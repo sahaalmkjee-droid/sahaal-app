@@ -4,11 +4,10 @@ databases:
     user: sahaal_user
     plan: free
     region: oregon
-    postgresMajorVersion: 16
 
 services:
   # ----------------------------------------------------
-  # 1. Backend Service (FastAPI)
+  # 1. Backend Web Service (FastAPI)
   # ----------------------------------------------------
   - type: web
     name: sahaal-backend
@@ -39,11 +38,8 @@ services:
   # ----------------------------------------------------
   # 2. Frontend Static Site (React + Vite)
   # ----------------------------------------------------
-  - type: web
+  - type: static
     name: sahaal-frontend
-    env: static
-    plan: free
-    region: oregon
     rootDir: f_end
     buildCommand: npm install && npm run build
     staticPublishPath: dist
@@ -51,9 +47,3 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-    envVars:
-      - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: sahaal-backend
-          property: host

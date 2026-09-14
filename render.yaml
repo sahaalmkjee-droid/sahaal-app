@@ -1,7 +1,7 @@
 databases:
   - name: sahaal-db
     databaseName: nexus_db
-    user: postgres
+    user: sahaal_user
     plan: free
     region: oregon
     postgresMajorVersion: 16
